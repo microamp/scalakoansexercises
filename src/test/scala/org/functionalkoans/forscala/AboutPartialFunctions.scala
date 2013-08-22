@@ -5,7 +5,7 @@ import org.scalatest.matchers.ShouldMatchers
 
 class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
 
-  koan("""A partial function is a trait that when
+  koan( """A partial function is a trait that when
           | implemented can be used as building blocks to determine
           | a solution.  The trait PartialFunction requires that the
           | the method isDefinedAt and apply be implemented.""") {
@@ -26,19 +26,19 @@ class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
 
     val whatToDo = doubleEvens orElse tripleOdds //Here we chain the partial functions together
 
-    whatToDo(3) should be(9)
-    whatToDo(4) should be(8)
+    whatToDo(3) should be(__)
+    whatToDo(4) should be(__)
   }
 
-  koan("""Case statements are a quick way to create partial functions. When you create a case
-           | statement, the apply and isDefinedAt is created for you.""") {
+  koan( """Case statements are a quick way to create partial functions. When you create a case
+          | statement, the apply and isDefinedAt is created for you.""") {
 
     //The case statements are called case statements with guards
     val doubleEvens: PartialFunction[Int, Int] = {
-      case x: Int if ((x % 2) == 0) => x * 2
+      case x: Int if (x % 2) == 0 => x * 2
     }
     val tripleOdds: PartialFunction[Int, Int] = {
-      case x: Int if ((x % 2) != 0) => x * 3
+      case x: Int if (x % 2) != 0 => x * 3
     }
 
     val whatToDo = doubleEvens orElse tripleOdds //Here we chain the partial functions together
@@ -46,43 +46,43 @@ class AboutPartialFunctions extends KoanSuite with ShouldMatchers {
     whatToDo(4) should be(8)
   }
 
-  koan("""The result of partial functions can have an \'andThen\' function added to the end
+  koan( """The result of partial functions can have an \'andThen\' function added to the end
           | of the chain""") {
 
     //These are called case statements with guards
     val doubleEvens: PartialFunction[Int, Int] = {
-      case x: Int if ((x % 2) == 0) => x * 2
+      case x: Int if (x % 2) == 0 => x * 2
     }
     val tripleOdds: PartialFunction[Int, Int] = {
-      case x: Int if ((x % 2) != 0) => x * 3
+      case x: Int if (x % 2) != 0 => x * 3
     }
 
     val addFive = (x: Int) => x + 5
     val whatToDo = doubleEvens orElse tripleOdds andThen addFive //Here we chain the partial functions together
-    whatToDo(3) should be(14)
-    whatToDo(4) should be(13)
+    whatToDo(3) should be(__)
+    whatToDo(4) should be(__)
   }
 
-  koan("""The result of partial functions can have an \'andThen\' function added to the end
+  koan( """The result of partial functions can have an \'andThen\' function added to the end
           | of the chain used to continue onto another chain of logic""") {
 
     val doubleEvens: PartialFunction[Int, Int] = {
-      case x: Int if ((x % 2) == 0) => x * 2
+      case x: Int if (x % 2) == 0 => x * 2
     }
     val tripleOdds: PartialFunction[Int, Int] = {
-      case x: Int if ((x % 2) != 0) => x * 3
+      case x: Int if (x % 2) != 0 => x * 3
     }
 
     val printEven: PartialFunction[Int, String] = {
-      case x: Int if ((x % 2) == 0) => "Even"
+      case x: Int if (x % 2) == 0 => "Even"
     }
     val printOdd: PartialFunction[Int, String] = {
-      case x: Int if ((x % 2) != 0) => "Odd"
+      case x: Int if (x % 2) != 0 => "Odd"
     }
 
     val whatToDo = doubleEvens orElse tripleOdds andThen (printEven orElse printOdd)
 
-    whatToDo(3) should be("Odd")
-    whatToDo(4) should be("Even")
+    whatToDo(3) should be(__)
+    whatToDo(4) should be(__)
   }
 }

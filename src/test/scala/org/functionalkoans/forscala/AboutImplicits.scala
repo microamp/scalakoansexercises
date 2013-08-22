@@ -1,18 +1,9 @@
 package org.functionalkoans.forscala
 
 import org.scalatest.matchers.ShouldMatchers
+import language.implicitConversions
 import support.KoanSuite
 
-
-/**
- * Created by Daniel Hinojosa
- * User: Daniel Hinojosa
- * Date: 3/10/11
- * Time: 5:38 PM
- * url: <a href="http://www.evolutionnext.com">http://www.evolutionnext.com</a>
- * email: <a href="mailto:dhinojosa@evolutionnext.com">dhinojosa@evolutionnext.com</a>
- * tel: 505.363.5832
- */
 class AboutImplicits extends KoanSuite with ShouldMatchers {
 
   koan("""Implicits wrap around existing classes to provide extra functionality
@@ -20,22 +11,22 @@ class AboutImplicits extends KoanSuite with ShouldMatchers {
            |   Creating a method isOdd for Int, which doesn't exist""") {
 
     class KoanIntWrapper(val original: Int) {
-      def isOdd() = original % 2 != 0
+      def isOdd = original % 2 != 0
     }
 
     implicit def thisMethodNameIsIrrelevant(value: Int) = new KoanIntWrapper(value)
 
-    19.isOdd() should be(__)
-    20.isOdd() should be(__)
+    19.isOdd should be(__)
+    20.isOdd should be(__)
   }
 
   koan("""Implicits rules can be imported into your scope with an import""") {
     object MyPredef {
 
       class KoanIntWrapper(val original: Int) {
-        def isOdd() = original % 2 != 0
+        def isOdd = original % 2 != 0
 
-        def isEven() = !isOdd()
+        def isEven = !isOdd
       }
 
       implicit def thisMethodNameIsIrrelevant(value: Int) = new KoanIntWrapper(value)
@@ -43,8 +34,8 @@ class AboutImplicits extends KoanSuite with ShouldMatchers {
 
     import MyPredef._
     //imported implicits come into effect within this scope
-    19.isOdd() should be(__)
-    20.isOdd() should be(__)
+    19.isOdd should be(__)
+    20.isOdd should be(__)
   }
 
   koan("""Implicits can be used to automatically convert one type to another""") {
@@ -54,7 +45,7 @@ class AboutImplicits extends KoanSuite with ShouldMatchers {
 
     def add(a: BigInteger, b: BigInteger) = a.add(b)
 
-    (add(3, 6)) should be(__)
+    add(3, 6) should be(__)
   }
 
   koan("""Implicits can be used declare a value to be provided as a default as
@@ -64,6 +55,7 @@ class AboutImplicits extends KoanSuite with ShouldMatchers {
     def howMuchCanIMake_?(hours: Int)(implicit dollarsPerHour: BigDecimal) = dollarsPerHour * hours
 
     implicit var hourlyRate = BigDecimal(34.00)
+
     howMuchCanIMake_?(30) should be(__)
 
     hourlyRate = BigDecimal(95.00)

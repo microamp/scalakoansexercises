@@ -7,39 +7,53 @@ class Koans extends Suite {
   override def nestedSuites = List(
     new AboutAsserts,
     new AboutValAndVar,
-    new AboutConstructors,
+    new AboutClasses,
+    new AboutObjects,
+
     new AboutTuples,
     new AboutLists,
     new AboutMaps,
     new AboutSets,
+    new AboutOptions,
     new AboutMutableMaps,
     new AboutMutableSets,
+    new AboutFormatting,
     new AboutPatternMatching,
     new AboutCaseClasses,
-    new AboutOptions,
-    new AboutSequencesAndArrays,
-    new AboutNamedAndDefaultArguments,
-    new AboutForExpressions,
-    new AboutEmptyValues,
-    new AboutParentClasses,
-    new AboutTypeSignatures,
-    new AboutTraits,
-    new AboutImportsAndPackages,
-    new AboutPreconditions,
+
+    new AboutRange,
     new AboutHigherOrderFunctions,
+    new AboutPartiallyAppliedFunctions,
+    new AboutPartialFunctions,
+
+    //Afternoon
+    new AboutImplicits,
+    new AboutTraits,
+    new AboutForExpressions,
+    new AboutInfixPrefixAndPostfixOperators,
+    new AboutInfixTypes,
+
+    new AboutSequencesAndArrays,
+    new AboutIterables,
+    new AboutTraversables,
+    new AboutNamedAndDefaultArguments,
+    new AboutManifests,
+    new AboutPreconditions,
+
+    //move this later type variance and signatures on slides and REPL
+
+    new AboutParentClasses,
+
+    new AboutEmptyValues,
+
+    new AboutTypeSignatures,
     new AboutUniformAccessPrinciple,
-    new AboutPatternMatching,
     new AboutLiteralBooleans,
     new AboutLiteralNumbers,
     new AboutLiteralStrings,
-    new AboutPartialFunctions,
+    new AboutTypeVariance,
     new AboutEnumerations,
-    new AboutInfixPrefixAndPostfixOperators,
-    new AboutInfixTypes,
-    new AboutImplicits,
-    new AboutManifests,
-    new AboutTypeVariance
-    
+    new AboutConstructors
   )
 
   override def run(testName: Option[String], reporter: Reporter, stopper: Stopper, filter: Filter,

@@ -11,13 +11,13 @@ class AboutTypeSignatures extends KoanSuite {
     val z = "Do" :: "Re" :: "Mi" :: "Fa" :: "So" :: "La" :: "Te" :: "Do" :: Nil //Infers that the list assigned to variable is of type List[String]
   }
 
-  koan("A trait can be declared containing a type, where a concrete implmenter will satisfy the type") {
+  koan("A trait can be declared containing a type, where a concrete implementer will satisfy the type") {
     trait Randomizer[A] {
       def draw(): A
     }
 
     class IntRandomizer extends Randomizer[Int] {
-      def draw = {
+      def draw() = {
         import util.Random
         Random.nextInt()
       }
@@ -28,15 +28,15 @@ class AboutTypeSignatures extends KoanSuite {
   }
 
   koan("Class meta-information can be retrieved by class name by using classOf[className]") {
-    classOf[String].getCanonicalName() should be(__)
-    classOf[String].getSimpleName() should be(__)
+    classOf[String].getCanonicalName should be(__)
+    classOf[String].getSimpleName should be(__)
   }
 
   koan("Class meta-information can be derived from an object reference using getClass()") {
     val zoom = "zoom"
     zoom.getClass should be(__) // Hint: classOf ...
-    zoom.getClass.getCanonicalName() should be(__)
-    zoom.getClass.getSimpleName() should be(__)
+    zoom.getClass.getCanonicalName should be(__)
+    zoom.getClass.getSimpleName should be(__)
   }
 
   koan("isInstanceOf[className] is used to determine the if an object reference is an instance of given class") {
@@ -45,7 +45,7 @@ class AboutTypeSignatures extends KoanSuite {
     }
 
     class IntRandomizer extends Randomizer[Int] {
-      def draw = {
+      def draw() = {
         import util.Random
         Random.nextInt()
       }
@@ -69,7 +69,7 @@ class AboutTypeSignatures extends KoanSuite {
 
     val intRand = new IntRandomizer
     val rand = intRand
-    val intRand2 = rand.asInstanceOf[IntRandomizer]
+    val intRand2 = rand
     intRand2.isInstanceOf[IntRandomizer] should be(__)
   }
 
@@ -80,7 +80,7 @@ class AboutTypeSignatures extends KoanSuite {
     }
 
     class IntRandomizer extends Randomizer[Int] {
-      def draw = {
+      def draw() = {
         import util.Random
         Random.nextInt()
       }

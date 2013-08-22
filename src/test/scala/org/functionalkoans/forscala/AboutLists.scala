@@ -23,6 +23,22 @@ class AboutLists extends KoanSuite {
     a should equal(List(__, __, __))
   }
 
+  koan("Eq tests identity (same object)") {
+    val a = List(1, 2, 3)
+    val b = List(1, 2, 3)
+
+
+    (a eq b) should be(__)
+  }
+
+  koan("== tests equality (same content)") {
+    val a = List(1, 2, 3)
+    val b = List(1, 2, 3)
+
+    (a == b) should be(__)
+
+  }
+
   koan("Lists can be accessed via head and tail") {
     val a = List(1, 2, 3)
     a.head should equal(__)
@@ -61,24 +77,18 @@ class AboutLists extends KoanSuite {
     a.toString should equal("List(__, __, __, __, __)")
 
     // map a function to double the numbers over the list
-    a.map {
-      v => v * 2
-    } should equal(List(__, __, __, __, __))
+    a.map {v => v * 2} should equal(List(__, __, __, __, __))
 
-    // find any values divisible by 3 in the list
-    a.filter {
-      v => v % 3 == 0
-    } should equal(List(__, __))
+    // filter any values divisible by 3 in the list
+    a.filter {v => v % 3 == 0} should equal(List(__, __))
   }
 
   koan("Functions over lists can use _ as shorthand") {
     val a = List(1, 2, 3)
-    a.map {
-      _ * 2
-    } should equal(List(__, __, __))
-    a.filter {
-      _ % 2 == 0
-    } should equal(List(__))
+
+    a.map {_ * 2} should equal(List(__, __, __))
+
+    a.filter {_ % 2 == 0} should equal(List(__))
   }
 
   koan("Functions over lists can use () instead of {}") {
